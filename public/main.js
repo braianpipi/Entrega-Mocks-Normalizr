@@ -1,10 +1,19 @@
+import io from "socket.io-client";
+
+// const socket = io();
+
+// // or, more explicit version
+// import { Manager } from "socket.io-client";
+
+// const manager = new Manager("https://example.com");
+// const socket = manager.socket("/");
 
 const socket = io();
 const div = document.getElementById("messagesContainer");
 const btn = document.getElementById("send");
 const inputText = document.getElementById("message");
 const inputUser = document.getElementById("email");
-
+const inputThumbnail = document.getElementById('avatar');
 getNow = () => {
   const now = new Date();
   return `${now.getHours()}:${now.getMinutes()}`;
@@ -17,11 +26,16 @@ btn.addEventListener("click", () => {
     return alert("Por favor ingresa un texto")
   }else{
 
-    const personMessage = {
+    const personMessage = [{
       email: inputUser.value,
-      date: getNow(),
+      timestamp: getNow(),
       text: inputText.value,
-    };
+      thumbnail: inputThumbnail.value
+    },{
+      // Aca nose que poner 
+      id_mensajes:mesagges.length,
+      text:inputText.value
+    }];
     socket.emit("newMessage", personMessage);
     inputUser.value = "";
     inputText.value = "";

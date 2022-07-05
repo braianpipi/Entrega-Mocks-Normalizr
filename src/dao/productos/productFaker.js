@@ -10,6 +10,6 @@ export function createFakeProduct() {
     };
     productos.push(producto)
     }
-    return producto
+    return productos
 }
 

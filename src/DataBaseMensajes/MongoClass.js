@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import config from "../config.js";
+import config from "../configDB.js";
 
 mongoose.connect(config.mongoDB.URL, config.mongoDB.options);
 
@@ -16,7 +16,7 @@ class MongoClass {
     }
   }
 
-  async create(obj) {
+  async createMessage(obj) {
     try {
       const nuevoMensaje = await this.collection.create(obj);
       return nuevoMensaje;
